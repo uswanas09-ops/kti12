@@ -1,0 +1,72 @@
+project:
+  timezone: "UTC"
+
+paths:
+  raw_dir: "data/raw"
+  manual_raw_dir: "data/raw/manual"
+  processed_dir: "data/processed"
+  results_dir: "data/results"
+  figures_dir: "data/figures"
+
+keywords:
+  - "ADEM"
+  - "3T"
+  - "beasiswa ADEM"
+  - "Kemendikdasmen ADEM"
+  - "beasiswa 3T"
+
+periods:
+  period_1:
+    label: "Juni 2023 - Mei 2025"
+    start: "2023-06-01T00:00:00Z"
+    end: "2025-06-01T00:00:00Z"
+  period_2:
+    label: "Juni 2025 - Mei 2026"
+    start: "2025-06-01T00:00:00Z"
+    end: "2026-06-01T00:00:00Z"
+
+scraping:
+  max_results_per_keyword: 100
+  youtube:
+    enabled: true
+    max_videos_per_keyword: 10
+    max_comments_per_video: 100
+  twitter:
+    enabled: true
+    max_results_per_keyword: 100
+  instagram:
+    enabled: true
+    max_results_per_keyword: 100
+
+preprocessing:
+  custom_stopwords:
+    - "yg"
+    - "yang"
+    - "aja"
+    - "nih"
+    - "dong"
+    - "min"
+    - "admin"
+
+sentiment:
+  model_name: "mdhugol/indonesia-bert-sentiment-classification"
+  label_map:
+    LABEL_0: "positive"
+    LABEL_1: "neutral"
+    LABEL_2: "negative"
+  batch_size: 16
+  max_length: 256
+
+topic_modeling:
+  min_topics: 3
+  max_topics: 8
+  passes: 10
+  random_state: 42
+  no_below: 2
+  no_above: 0.8
+  topn_words: 10
+
+visualization:
+  figure_dpi: 150
+  wordcloud_width: 1200
+  wordcloud_height: 800
